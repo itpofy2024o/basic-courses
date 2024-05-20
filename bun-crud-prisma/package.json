@@ -1,0 +1,16 @@
+{
+  "name": "bun-crud-prisma",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "5.3.1",
+    "elysia": "latest"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "prisma": "^5.3.1"
+  },
+  "module": "src/index.js"
+}
