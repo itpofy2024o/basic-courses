@@ -1,0 +1,218 @@
+.app {
+  font-family: "Courier New", Courier, monospace;
+  height: 100vh;
+
+  &.dark-mode {
+    background: black;
+    .app-header * {
+      color: rgba(255, 255, 255, 0.95);
+    }
+  }
+}
+
+.app-header {
+  position: absolute;
+  box-sizing: border-box;
+  top: 0px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+
+  div,
+  h1,
+  small,
+  a {
+    text-align: center;
+    color: black;
+    user-select: none;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .demo-list {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    display: flex;
+    gap: 15px;
+    font-size: 16px;
+    a {
+      text-decoration: underline;
+      cursor: pointer;
+      pointer-events: all;
+      &.active {
+        font-weight: 800;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .github {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 16px;
+    pointer-events: all;
+  }
+
+  h1 {
+    font-size: 42px;
+    margin-top: 18px;
+    margin-bottom: 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  small {
+    line-height: normal;
+  }
+
+  @media (max-width: 480px) {
+    padding: 33px;
+    h1 {
+      font-size: 36px;
+      line-height: normal;
+    }
+  }
+  @media (max-height: 480px) {
+    padding: 10px;
+    small {
+      display: none;
+    }
+    h1 {
+      font-size: 36px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.divz {
+  /* override styling of divz and divz-item children to suit */
+  &.demo1 {
+    color: rgba(250, 250, 250, 0.8);
+    .divz-item > * {
+      font-size: 50px;
+    }
+  }
+
+  /* customised divz-item stylings & sizings for demo4 */
+  &.demo4 {
+    figure {
+      aspect-ratio: 1 / 1;
+    }
+    .divz-item > * {
+      border-radius: 10px;
+      width: auto;
+      align-items: flex-end;
+      justify-content: end;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+      @media (orientation: portrait) {
+        transform: translate(-50%, -50%) scale(0.35);
+      }
+    }
+    .divz-item.selected {
+      figcaption {
+        display: flex;
+        animation: fade-in-full 0.5s 0.5s forwards;
+        @media (max-height: 480px) {
+          margin: 5px;
+          transform: translate(25%, 20%) scale(0.5);
+        }
+      }
+    }
+    .divz-item.expanded {
+      > * {
+        transform: translate(-50%, -50%) scale(0.8);
+        figcaption {
+          transform: translate(25%, 25%) scale(0.55);
+        }
+        @media (orientation: portrait) {
+          transform: translate(-50%, -50%) scale(0.85);
+          figcaption {
+            transform: translate(50%, 25%) scale(0.5);
+          }
+        }
+      }
+    }
+  }
+  /* figcaption used in demo 4 for text label overlays */
+  figcaption {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(200, 200, 200, 0.15);
+    color: white;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    transition: transform 0.3s, opacity 0.3s;
+
+    div {
+      user-select: none;
+      pointer-events: none;
+    }
+    div:first-child {
+      font-size: 50px;
+      line-height: 1;
+      font-family: monospace;
+      @media (max-height: 480px) {
+        font-size: 30px;
+      }
+    }
+    div:last-child {
+      font-size: 12px;
+      @media (max-height: 480px) {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  opacity: 0;
+}
+
+img.background {
+  animation: fade-in-full 0.5s 0.2s forwards;
+}
+
+video.background {
+  animation: fade-in 2s 0.2s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fade-in-full {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
